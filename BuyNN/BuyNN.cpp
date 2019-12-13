@@ -19,7 +19,7 @@ MT4_EXPFUNC int __stdcall Test(
 
     PyObject *openValue, *closeValue, *stochValue, *volValue;
     PyObject* prediction;     
-
+    
     Py_Initialize();
  
     openValue = PyFloat_FromDouble(open);
@@ -27,23 +27,17 @@ MT4_EXPFUNC int __stdcall Test(
     stochValue = PyFloat_FromDouble(stoch);
     volValue = PyFloat_FromDouble(vol);
     
-    pName   = PyUnicode_FromString("py_script");
-    
-    pModule = PyImport_ImportModule("py_script");    
-    
+    //pName   = PyUnicode_FromString("py_script");    
+    pModule = PyImport_ImportModule("py_script");        
     pFunc = PyObject_GetAttrString(pModule, "multiply");
-    //return PyCallable_Check(pFunc);
-
-    //return Py_IsInitialized();
-    
-    
+ 
     if (PyCallable_Check(pFunc))
     {       
         pArgs = PyTuple_New(4);
 
         PyTuple_SetItem(pArgs, 0, openValue);
         PyTuple_SetItem(pArgs, 1, closeValue);
-        PyTuple_SetItem(pArgs, 2, stochValue);
+        PyTuple_SetItem(pArgs, 2, stochValue);  
         PyTuple_SetItem(pArgs, 3, volValue);
 
         prediction = PyObject_CallObject(pFunc, pArgs);
@@ -53,7 +47,6 @@ MT4_EXPFUNC int __stdcall Test(
         //Py_DECREF(prediction);
     }
     
-
     Py_Finalize();
     
     if (!_getch()) _getch();
