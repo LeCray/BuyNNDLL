@@ -20,26 +20,26 @@ MT4_EXPFUNC int __stdcall Test(
     PyObject *openValue, *closeValue, *stochValue, *volValue;
     PyObject* prediction;     
     //const char* scriptDirectoryName = "C:/ProgramData/Anaconda3"; 
-
+    
     Py_Initialize();
 
    // PyRun_SimpleString("sys.path = ['', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\python36.zip', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\DLLs', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\lib', 'C:\\Users\\Thembi\\.conda\\envs\\test32', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\lib\\site - packages']");
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("import numpy");
+    //PyRun_SimpleString("import numpy");    
 
 //    PyObject* sysPath = PySys_GetObject((char*)"path");
   //  PyList_Append(sysPath, PyUnicode_FromString("."));
-
     
     openValue = PyFloat_FromDouble(open);
     closeValue = PyFloat_FromDouble(close);
     stochValue = PyFloat_FromDouble(stoch);
     volValue = PyFloat_FromDouble(vol);
-        
-    pModule = PyImport_ImportModule("misc32");     
+  
+    pModule = PyImport_ImportModule("misc32");
     pFunc = PyObject_GetAttrString(pModule, "goo");
     
     //Py_Finalize();
+    
     //return 3;
 
     /*
@@ -52,7 +52,7 @@ MT4_EXPFUNC int __stdcall Test(
         return 11;
     }        
     */
-
+    
     if (PyCallable_Check(pFunc))
     {                       
         pArgs = PyTuple_New(4);
@@ -68,11 +68,11 @@ MT4_EXPFUNC int __stdcall Test(
         
         //Py_DECREF(prediction);
     }
-
+    
     //Py_Finalize();
     
     //if (!_getch()) _getch();
-    //return 3;
+    //return 4;
     
 }
 
