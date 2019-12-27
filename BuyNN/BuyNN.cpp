@@ -25,7 +25,9 @@ MT4_EXPFUNC int __stdcall Test(
 
    // PyRun_SimpleString("sys.path = ['', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\python36.zip', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\DLLs', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\lib', 'C:\\Users\\Thembi\\.conda\\envs\\test32', 'C:\\Users\\Thembi\\.conda\\envs\\test32\\lib\\site - packages']");
     PyRun_SimpleString("import sys");
-    //PyRun_SimpleString("import numpy");    
+    PyRun_SimpleString("import os");
+    PyRun_SimpleString("os.environ['KERAS_BACKEND'] = 'theano'");    
+        
 
 //    PyObject* sysPath = PySys_GetObject((char*)"path");
   //  PyList_Append(sysPath, PyUnicode_FromString("."));
@@ -69,7 +71,7 @@ MT4_EXPFUNC int __stdcall Test(
         //Py_DECREF(prediction);
     }
     
-    //Py_Finalize();
+    Py_Finalize();
     
     //if (!_getch()) _getch();
     //return 4;
